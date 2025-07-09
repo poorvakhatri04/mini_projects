@@ -1,51 +1,38 @@
-let inputSlider=document.getElementById("inputSlider");
-let sliderValue=document.getElementById("sliderValues");
-let passBox=document.getElementById("passBox");
-let lowercase=document.getElementById("lowercase");
-let uppercase=document.getElementById("uppercase");
-let numbers=document.getElementById("numbers");
-let symbols=document.getElementById("symbols");
-let gnbtn=document.getElementById("gnbtn");
-let copyIcon=document.getElementById("copyIcon");
+const qrText=document.getElementById("qr-text");
+const sizes=document.getElementById("sizes");
+const generateBtn=document.getElementById("generateBtn");
+const downloadBtn=document.getElementById("downloadBtn");
+const qrContainer=document.querySelector('.qr-body');
 
-//showing input slider value
-sliderValue.textContent=inputSlider.value;
-inputSlider.addEventListener('input',()=>{
-    sliderValue.textContent=inputSlider.value;
+let size=sizes.value;
+sizes.addEventListener('change',(e)=>{
+    size=e.target.value;
+    isEmptyInput();
+})
+generateBtn.addEventListener('click',(e)=>{
+    e.preventDefault();
+    isEmptyInput();
 });
-
-gnbtn.addEventListener('click',()=>{
-    passBox.value=generatePassword();
-});
-
-let upperChars="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-let lowerChars="abcdefghijklmnopqrstuvwxyz";
-let Numbers="0123456789";
-let Symbols="!@#$%^&*_~"
-//function to generate password
-function generatePassword(){
-    let genPassword="";
-    let allChars="";
-    allChars+=lowercase.checked ? lowerChars:"";
-    allChars+=uppercase.checked ? upperChars:"";
-    allChars+=numbers.checked ? Numbers:"";
-    allChars+=symbols.checked ? Symbols:"";
-
-    let i=1;
-    while(i<=inputSlider.value){
-        genPassword+= allChars.charAt(Math.floor(Math.random()*allChars.length));
-        i++;
-    }
-    return genPassword;
+function isEmptyInput(){
+    qrText.value.length>0 ? generateQRCode() : alert("Enter the text or URL to generate your QR code");
 }
-copyIcon.addEventListener('click',()=>{
-    if(passBox.value!=""||passBox.value.length>=1){
-       navigator.clipboard.writeText(passBox.value);
-       copyIcon.innerText="check";
-       copyIcon.title="Password Copied";
-       setTimeout(()=>{
-        copyIcon.innerHTML="content_copy";
-        copyIcon.title="";
-       },3000)
+function generateQRCode(){
+    qrContainer.innerHTML="";
+    new QRCode(qrContainer,{
+        text:qrText.value, 
+        height:size,
+        width:size,
+        colorLight:"#fff",
+        colorDark:"#000",
+    });
+}
+downloadBtn.addEventListener('click',()=>{
+    let img=document.querySelector('.qr-body img');
+    if(img!==null){
+        let imgAttr=img.getAtrribute('src');
+        downloadBtn.setAttribute("href",imgAttr);
+    }
+    else{
+        downloadBtn.setAttribute("href",`${document.querySelector('canvas').toDataURL()}`);
     }
 });

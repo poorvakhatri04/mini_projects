@@ -1,83 +1,89 @@
+:root{
+    --bcg-color:#001122;
+    --primary-color:#155e75;
+    --border-radius:8px;
+    --text-color:#ffffff;
+    --border-color:#7fb7c9;
+}
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:sans-serif;
+    font-family: sans-serif;
 }
 body{
-    max-width:100vw;
-    min-height:100vh;
+    width:100%;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background-color: var(--bcg-color);
+}
+.box{
+    background-color: var(--primary-color);
+    padding:30px;
+    width:400px;
+    border-radius:var(--border-radius);
+}
+.qr-header h1{
+    font-size:26px;
+    text-align:center;
+    color:var(--text-color);
+    margin-bottom:24px;
+    text-transform: uppercase;
+}
+.qr-header input{
+    width:100%;
+    margin-block:12px;/*block means through top and bottom, inline means horizontal and vertical*/
+}
+.qr-header input,select{
+    padding:8px;
+    border-radius: var(--border-radius);
+    font-size: 18px;
+    outline:none;
+    border:2px solid var(--border-color);
+}
+.qr-header label{
+    color:var(--text-color);
+    font-size:20px;
+}
+.qr-header div{
+    display:flex;
+    justify-content:space-between;
+}
+.qr-footer{
     display:flex;
     justify-content: center;
-    align-items: center;
-    background-image: url(bg.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    color:#df851e;
-    font-weight:600;
 }
-.container{
-    border:0.5px solid #ffffff;
-    border-radius: 10px;
-    padding:28px 32px;
-    display:flex;
-    flex-direction:column;
-    background:linear-gradient(to bottom, #ffffff, #ffffff95);
-    box-shadow:8px 8px 4px #6897d5;
-}
-.container h1{
-    font-size:1.5rem;
-    margin-block:8px;
-}
-.inputBox{
-    position: relative;
-}
-.inputBox span{
-    position: absolute;
-    top:16px;
-    right:6px;
-    font-size:28px;
-    cursor: pointer;
-    z-index:2;/*z-index zyda hota hai toh vo upr ki trf show hota hai*/
-}
-.PassBox{
-    background-color: #0732cc;
-    border:none;
-    outline:none;
-    padding:10px;
-    width:300px;
+.qr-footer a{
+    background-color: var(--text-color);
+    text-decoration: none;
     font-size:20px;
-    border-radius: 4px;
-    color:#df851e;
-    text-overflow:ellipsis;
-    margin-block:8px;/*margin block is used to give margin in top and bottom and margin inline is used to give margin in left and right*/
+    padding:14px 36px;
+    margin-inline:2px;
+    font-weight: 600;
+    color:var(--primary-color);
+    border-radius: var(--border-radius);
 }
-.row{
-    color:#df851e;
-    display:flex;
-    margin-block:8px;
+.qr-body{
+    display: grid;
+    place-items: center;
+    padding:20px;
 }
-.row p, .row label{
-    flex-basis: 100%;/*it is used to give initial width*/
-    font-size:18px;
+.qr-body img{
+    max-width:100%;
+    max-height:100%;
+    margin-block:10px;
+    padding:20px;
+    border: 0.5px solid var(--border-color);
+    border-radius: var(--border-radius);
 }
-.row input[type="checkbox"]{
-    width:20px;
-    height:20px;
-}
-.gnbtn{
-    border:none;
-    outline:none;
-    background-color: #df851e;
-    padding:12px 24px;
-    color:#ffffff;
-    font-size: 18px;
-    margin-block:8px ;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 4px;;
-}
-.gnbtn:hover{
-    background-color: #a35a07;
+@media screen and (max-width:520px){
+    .box{
+        width:80%;
+    }
+    .qr-footer a{
+        padding:12px;
+        font-size:16px;
+    }
 }

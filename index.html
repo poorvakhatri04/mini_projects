@@ -3,40 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Generator</title>
+    <title>QR-CODE-GENERATOR</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-    <div class="container">
-        <h1>Password Generator</h1>
-        <div class="inputBox">
-            <input type="text" class="PassBox" id="passBox" disabled>
-            <span class="material-icons" id="copyIcon">content_copy</span>
+    <div class="box">
+        <div class="qr-header">
+            <h1>Generate QR Code</h1>
+            <input type="text" placeholder="Type your text or URL" id="qr-text">
+            <div>
+                <label for="sizes">Select size:</label>
+                <select id="sizes">
+                    <option value="100">100x100</option>
+                    <option value="200">200x200</option>
+                    <option value="300">300x300</option>
+                    <option value="400">400x400</option>
+                    <option value="500">500x500</option>
+                    <option value="600">600x600</option>
+                    <option value="700">700x700</option>
+                    <option value="800">800x800</option>
+                    <option value="900">900x900</option>
+                    <option value="1000">1000x1000</option>
+                </select>
+            </div>
         </div>
-        <input type="range" min="1" max="30" value="8" id="inputSlider">
-        <div class="row">
-            <p>Password Length</p>
-            <span id="sliderValues"></span>
+        <div class="qr-body"></div>
+        <div class="qr-footer">
+            <a href="" id="generateBtn">Generate</a>
+            <a href="" id="downloadBtn" download="QR_Code.png">Download</a>
         </div>
-        <div class="row">
-            <label for="lowercase">Include Lowercase letters(a-z)</label>
-            <input type="checkbox" name="lowercase" id="lowercase" checked>
-        </div>
-        <div class="row">
-            <label for="uppercase">Include Uppercase letters(A-Z)</label>
-            <input type="checkbox" name="uppercase" id="uppercase" checked>
-        </div>
-        <div class="row">
-            <label for="numbers">Include Numbers(0-9)</label>
-            <input type="checkbox" name="numbers" id="numbers" checked>
-        </div>
-        <div class="row">
-            <label for="symbols">Include Symbols(@-&)</label>
-            <input type="checkbox" name="symbols" id="symbols" checked>
-        </div>
-        <button type="button" class="gnbtn" id="gnbtn">Generate Button</button>
     </div>
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </body>
 </html>
