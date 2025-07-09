@@ -1,25 +1,19 @@
-let input=document.getElementById('inputBox');
-let buttons=document.querySelectorAll('button');
-let string="";
-let arr=Array.from(buttons);
-arr.forEach(button =>{
-    button.addEventListener('click',(e)=>{
-        if(e.target.innerHTML=='='){
-            string=eval(string);
-            input.value=string;
-        }
-        else if(e.target.innerHTML=='AC'){
-            string="";
-            input.value=string;
-        }
-        else if(e.target.innerHTML=='DEL'){
-            string=string.substring(0,string.length-1);
-            input.value=string;
-        }
-        else{
-            string+=e.target.innerHTML;
-            input.value=string;
-        }
+let time=document.getElementById("time");
+let timeformat=document.getElementById("timeformat");
+document.addEventListener("DOMContentLoaded",()=>{
+    setInterval(showTime,1000);
+});
+const showTime=()=>{
+    let date=new Date();
+    let hr=date.getHours();
+    let min=date.getMinutes();
+    let secs=date.getSeconds();
+    hr=hr<10?`0${hr}`:hr;
+    min=min<10?`0${min}`:min;
+    secs=secs<10?`0${secs}`:secs;
 
-    })
-})
+    time.innerHTML=`${hr} : ${min} : ${secs}`;
+
+    timeformat.innerHTML=hr>12?"PM":"AM";
+    //console.log(hr+":"+min+":"+secs)
+}
