@@ -1,19 +1,25 @@
-let hr=document.getElementById("hour");
-let min=document.getElementById("min");
-let sec=document.getElementById("sec");
+let input=document.getElementById('inputBox');
+let buttons=document.querySelectorAll('button');
+let string="";
+let arr=Array.from(buttons);
+arr.forEach(button =>{
+    button.addEventListener('click',(e)=>{
+        if(e.target.innerHTML=='='){
+            string=eval(string);
+            input.value=string;
+        }
+        else if(e.target.innerHTML=='AC'){
+            string="";
+            input.value=string;
+        }
+        else if(e.target.innerHTML=='DEL'){
+            string=string.substring(0,string.length-1);
+            input.value=string;
+        }
+        else{
+            string+=e.target.innerHTML;
+            input.value=string;
+        }
 
-function displayTime(){
-     let date=new Date();
-     let hh=date.getHours();
-     let mm=date.getMinutes();
-     let ss=date.getSeconds();
-
-     let hRot=30*hh + mm/2;
-     let mRot=6*mm;
-     let sRot=6*ss;
-     hr.style.transform=`rotate(${hRot}deg)`;
-     min.style.transform=`rotate(${mRot}deg)`;
-     sec.style.transform=`rotate(${sRot}deg)`;
-}
-
-setInterval(displayTime,1000);
+    })
+})
