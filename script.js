@@ -1,38 +1,33 @@
-const qrText=document.getElementById("qr-text");
-const sizes=document.getElementById("sizes");
-const generateBtn=document.getElementById("generateBtn");
-const downloadBtn=document.getElementById("downloadBtn");
-const qrContainer=document.querySelector('.qr-body');
+let [sec, min, hrs]=[0,0,0];
+let displayTime=document.getElementById("displayTime");
+let timer=null;
 
-let size=sizes.value;
-sizes.addEventListener('change',(e)=>{
-    size=e.target.value;
-    isEmptyInput();
-})
-generateBtn.addEventListener('click',(e)=>{
-    e.preventDefault();
-    isEmptyInput();
-});
-function isEmptyInput(){
-    qrText.value.length>0 ? generateQRCode() : alert("Enter the text or URL to generate your QR code");
-}
-function generateQRCode(){
-    qrContainer.innerHTML="";
-    new QRCode(qrContainer,{
-        text:qrText.value, 
-        height:size,
-        width:size,
-        colorLight:"#fff",
-        colorDark:"#000",
-    });
-}
-downloadBtn.addEventListener('click',()=>{
-    let img=document.querySelector('.qr-body img');
-    if(img!==null){
-        let imgAttr=img.getAtrribute('src');
-        downloadBtn.setAttribute("href",imgAttr);
+function stopwatch(){
+    sec++;
+    if(sec==60){
+        sec=0;
+        min++;
+        if(min==60){
+            min=0;
+            hrs++;
+        }
     }
-    else{
-        downloadBtn.setAttribute("href",`${document.querySelector('canvas').toDataURL()}`);
+    let h=hrs<10 ? "0"+hrs : hrs;
+    let m=min<10 ? "0"+min : min;
+    let s=sec<10 ? "0"+sec : sec;
+    displayTime.innerHTML=h+":"+m+":"+s;
+}
+function watchStart(){
+    if(timer!=null){
+        clearInterval(timer);
     }
-});
+    timer=setInterval(stopwatch,1000);
+}
+function watchStop(){
+    clearInterval(timer);
+}
+function watchReset(){
+    clearInterval(timer);
+    [sec, min, hrs]=[0,0,0];
+    displayTime.innerHTML="00:00:00";
+}

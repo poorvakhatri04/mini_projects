@@ -3,37 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR-CODE-GENERATOR</title>
+    <title>StopWatch</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
-    <div class="box">
-        <div class="qr-header">
-            <h1>Generate QR Code</h1>
-            <input type="text" placeholder="Type your text or URL" id="qr-text">
-            <div>
-                <label for="sizes">Select size:</label>
-                <select id="sizes">
-                    <option value="100">100x100</option>
-                    <option value="200">200x200</option>
-                    <option value="300">300x300</option>
-                    <option value="400">400x400</option>
-                    <option value="500">500x500</option>
-                    <option value="600">600x600</option>
-                    <option value="700">700x700</option>
-                    <option value="800">800x800</option>
-                    <option value="900">900x900</option>
-                    <option value="1000">1000x1000</option>
-                </select>
-            </div>
-        </div>
-        <div class="qr-body"></div>
-        <div class="qr-footer">
-            <a href="" id="generateBtn">Generate</a>
-            <a href="" id="downloadBtn" download="QR_Code.png">Download</a>
+    <div class="stopwatch">
+        <h1 id="displayTime">00:00:00</h1>
+        <div class="buttons">
+            <span class="material-symbols-outlined" onclick="watchStop()">stop_circle</span>
+            <span class="material-symbols-outlined" onclick="watchStart()">play_circle</span>
+            <span class="material-symbols-outlined" onclick="watchReset()">restart_alt</span>
         </div>
     </div>
     <script src="script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </body>
 </html>
